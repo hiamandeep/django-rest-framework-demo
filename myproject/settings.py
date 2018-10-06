@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken', #needed for Token Authentication #make sure to migrate before make requests
     'corsheaders', #for cors error
     'myapp',
 ]
@@ -132,3 +133,13 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     #'/var/www/static/', 
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
