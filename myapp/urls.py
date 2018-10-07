@@ -3,6 +3,8 @@ from . import views
 from .views import *
 from rest_framework import routers
 from rest_framework.authtoken import views
+from django.contrib.auth.views import login 
+
 
 router = routers.DefaultRouter()
 router.register('myendpoint',ProductView )
@@ -19,7 +21,10 @@ urlpatterns = [
     #use the generated token like this
     #aman@vostro:~$ http GET http://localhost:8000/myendpoint/ "Authorization: Token ad061e8b1b6d4fc76718a5cb0dc32fe8106312fb"
  	#you should see the JSON response output
- 	
 
-    url(r'^another/', another),
+	#for testing session auth (admin can also be used instead)
+
+    url(r'^login$', login, name='login'), #login using the predefined view
+    url(r'^logout$', logoutView, name='logout'),
+
 ]
