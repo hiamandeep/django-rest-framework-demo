@@ -28,4 +28,8 @@ urlpatterns = [
     url(r'^logout$', logoutView, name='logout'),
     url(r'^signup/$', signup, name='signup'),
 
+    # this gives a predefined login button, also a callable api, but it gives csrf error on POST
+    #https://asciinema.org/a/42177 #httpie POST request on this url
+	url(r'^api-auth/', include('rest_framework.urls'), name='rest_framework'),
+
 ]
