@@ -135,6 +135,7 @@ STATICFILES_DIRS = (
 )
 
 REST_FRAMEWORK = {
+    #if no default authentication classes are given then BasicAuth and SessionAuth are used by default
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication', #not sure if session auth will work with angular UI
