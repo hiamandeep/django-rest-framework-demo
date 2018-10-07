@@ -26,5 +26,6 @@ urlpatterns = [
 
     url(r'^login$', login, name='login'), #login using the predefined view
     url(r'^logout$', logoutView, name='logout'),
+    url(r'^signup/$', signup, name='signup'),
 
 ]

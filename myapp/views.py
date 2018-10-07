@@ -7,6 +7,7 @@ from rest_framework import viewsets
 from .models import Product
 from .serializers import ProductSerializer
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import UserCreationForm
 
 
 
@@ -25,3 +26,19 @@ class ProductView(viewsets.ModelViewSet):
 def logoutView(request):
     logout(request)
     return redirect('login')
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
+
+
